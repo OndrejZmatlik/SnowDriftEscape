@@ -8,7 +8,7 @@ void SnowingGame::ClearGrid(void)
 {
     for (int row = 0; row < rows; row++)
         for (int col = 0; col < cols; col++)
-            grid[col][row] = ' ';
+            grid[col][row] = 0x00;
 }
 
 void SnowingGame::DrawGrid(void)
@@ -17,7 +17,7 @@ void SnowingGame::DrawGrid(void)
     for (int row = 0; row < rows; row++)
         for (int col = 0; col < cols; col++)
         {
-            if (grid[col][row] == ' ')
+            if (grid[col][row] == 0x00)
                 continue;
 
             lcd.setCursor(row, col);
@@ -46,11 +46,11 @@ void SnowingGame::MoveObstacles(void)
 
             if (row == rows - 1)
             {
-                grid[col][row] = ' ';
+                grid[col][row] = 0x00;
             }
             else
             {
-                grid[col][row] = ' ';
+                grid[col][row] = 0x00;
                 grid[col][row + 1] = SNOWFLAKE_SYMBOL;
             }
         }
@@ -59,7 +59,7 @@ void SnowingGame::MoveObstacles(void)
 void SnowingGame::MovePlayer(void)
 {
     for (int col = 0; col < cols; col++)
-        grid[col][rows - 1] = ' ';
+        grid[col][rows - 1] = 0x00;
 
     if (digitalRead(button) == LOW)
         playerColumn = (playerColumn == 0) ? 1 : 0;
